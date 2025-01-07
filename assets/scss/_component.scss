@@ -1,0 +1,289 @@
+@charset "utf-8";
+
+///////////////////////// root /////////////////////////////
+:root {
+    --fsz-tit : 65px;
+    --fsz-sub : 2rem;
+    --fsz-txt : 1.375rem;
+}
+///////////////////////// 색상 /////////////////////////////
+
+$colr-black: #111111;
+$colr-black-90:#282828;
+$colr-black-80:#404040;
+$colr-black-70:#575757;
+$colr-black-60:#707070;
+$colr-black-20:#CCCCCC;
+$colr-black-03:#F7F7F7;
+$colr-white-01:#f5f4f8;
+//$colr-main: #f8b62d;
+$colr-main: #F9EB10;
+
+
+///////////////////////// MIXIN /////////////////////////////
+/// 
+@mixin bg-images {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+@mixin obj-images {
+    height: auto;
+    object-fit: contain;
+}
+@mixin absolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@mixin border-radius {
+    border-radius: 12px;
+    overflow: hidden;
+}
+@mixin fix-height {
+    min-height: calc(100dvh - 5.125rem);
+}
+@mixin glass-effect {
+    background: rgba(203, 228, 255, 0.47);
+    background: rgb(226 233 241 / 47%);
+    backdrop-filter: blur(20px);
+}
+
+
+///////////////////////// COMPONENT ////////////////////////
+.ar {
+    &--flex {
+        display: flex;
+        &-algn {
+            &-cntr {
+                align-items: center;
+            }
+            &-end {
+                align-items: end;
+            }
+        }
+        &-jstf {
+            &-cntr {
+                justify-content: center;
+            }
+            &-end {
+                justify-content: flex-end;
+            }
+            &-sb {
+                justify-content: space-between;
+            }
+            &-sa {
+                justify-content: space-around;
+            }
+        }
+    }
+    &--btn {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 8px;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: .5rem;
+        background-color: $colr-black;
+        color: #fff;
+        cursor: pointer;
+        & > * {
+            color: #fff;
+        }
+        &:hover {
+            background-color: $colr-black-70;
+        }
+        /* 크기 */ 
+        &-sm {
+            height: 2rem;
+            line-height: 2rem;
+        }
+        &-lg {
+            height: 3.125rem;
+            line-height: 3.125rem;
+            &.ar--btn-icon i {
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+        }
+        &-bg-non {
+            padding: 0;
+            background: none !important;
+            color: $colr-black;
+            & > * {
+                color: $colr-black;
+            }
+            &:hover,
+            &:active {
+                background: none !important;
+            }
+            &:hover{
+                color: $colr-black-60;
+                & i {
+                    color: $colr-black-60;
+                }
+            }
+            &:active {
+                color: $colr-black;
+                font-weight: 700;
+                & i {
+                    color: $colr-black;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+     &--icon {
+        display: inline-block;
+        vertical-align: middle;
+        font: normal normal normal 1.5rem / 1 "FontAwesome";
+        text-rendering: geometricPrecision;
+    }
+}
+
+
+///////////////////////// keyframes ani /////////////////
+
+$timin-function : cubic-bezier(0.6, 0.05, 0.28, 0.95);
+
+@keyframes bounce {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes bounce2 {
+    0% {
+        color: $colr-black;
+        transform: translateY(100px);
+    }
+    100% {
+        color: $colr-black;
+        transform: translateY(0);
+    }
+}
+
+@keyframes showIn {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 0;
+    }
+}
+@keyframes underline {
+    60% {
+        transform-origin: right center;
+        transform: scaleX(1);
+    }
+    100% {
+        transform-origin: right center;
+        transform: scaleX(0);
+    }
+}
+
+@keyframes yRotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(3600deg);
+    }
+}
+
+@keyframes arrwAni {
+    0% {
+        transform: translate(0, 0) rotate(-90deg);  
+    }
+    8% {
+        transform: translate(10%, -10%) rotate(-90deg);
+    }
+    16%,
+    100% {
+        transform: translate(0, 0) rotate(-90deg);
+    }
+}
+@keyframes arrwAni2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg); 
+    }
+    8% {
+        transform: translate(10%, 10%) rotate(0deg);
+    }
+    16%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* 스피너 애니메이션 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes loading--dim {
+    0% {
+        visibility: visible;
+        transform-origin: top;
+        transform: scaleY(0.2);
+    }
+    55% {
+        transform-origin: top;
+        transform: scaleY(1); 
+    }
+    66% {
+        transform-origin: bottom;
+    }
+    88% {
+        transform-origin: bottom;
+    }
+    100% {
+        transform-origin: bottom;
+        transform: scaleY(0); 
+    }
+ }
+ @keyframes wave {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+///////////////////////// 반응형 /////////////////////////////
+$pc: 1360px;
+$tablet: 1000px;
+$mobile-lg: 800px;
+$mobile-sm: 500px;
+$mobile-xs: 360px;
+@media screen and (max-width: $tablet) {
+    :root {
+        --fsz-tit : 2.25rem;
+        --fsz-sub : 1.5rem;
+        --fsz-txt : 1.125rem;
+    }
+}
+@media screen and (max-width: $mobile-lg) {
+    :root {
+        --fsz-tit : 1.5rem;
+        --fsz-sub : 1.125rem;
+        --fsz-txt : 1rem;
+    }
+    .ar {
+    }
+}
