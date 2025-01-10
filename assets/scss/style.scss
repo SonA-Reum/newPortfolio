@@ -177,16 +177,13 @@ nav:not(.pop--float-nav) {
     &--me{
         justify-content: space-around;
         position: relative;
-        &:nth-child(1) {
-            .main--me--tit::before {
-                background-image: url('../images/img_tit_01_sctn02.png');
-            }
+        .main--me--tit:nth-child(1)::before {
+            background-image: url('../images/img_tit_01_sctn02.png');
         }
-        &:nth-child(2) {
-            .main--me--tit::before {
-                background-image: url('../images/img_tit_02_sctn02.png');
-            }
+        .main--me--tit:nth-child(2)::before {
+            background-image: url('../images/img_tit_02_sctn02.png');
         }
+
         & * {
             vertical-align: middle;
         }
