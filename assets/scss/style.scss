@@ -205,6 +205,7 @@ nav:not(.pop--float-nav) {
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
+            pointer-events: none;
             &::before {
                 content: '서브 타이틀 이미지';
                 display: block;
@@ -248,6 +249,7 @@ nav:not(.pop--float-nav) {
                 position: relative;
                 display: none;
                 @include fix-height;
+                overflow: hidden;
                 &.spread--active {
                     display: block;
                 }
@@ -357,7 +359,7 @@ nav:not(.pop--float-nav) {
         }
     }
     &--cntc {
-        @include fix-height;
+        min-height: 100dvh;
         flex-direction: column;
         text-align: center;
         &--tit {

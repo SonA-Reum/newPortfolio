@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function ()  {
     meImg = document.querySelector('.main--me--img:nth-of-type(2)');
     meTit = document.querySelector('.main--me--tit:nth-child(2)');
     txtAni = document.querySelectorAll('.ani--fade-in');
-    exprLink =  document.querySelectorAll('.expr--cntns li > a')
+    exprLink =  document.querySelectorAll('.expr--cntns li > a');
     /* 최상위 선택자 */ 
     body = document.querySelector('body');
 
@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function ()  {
     meImgMbSet();
     maintainScrol();
     returnScrol();
-    moveSlide();
-    window.scrollTo(0, 0);
+    accScrollActive();
+    accClickActive();
 });
 
 window.addEventListener('load', () => {
@@ -120,7 +120,7 @@ window.addEventListener('load', () => {
     if (gnb.classList.contains('ham-active')) {
         gnb.classList.remove('ham-active');
     }
-    document.querySelector('html').scrollTo(0, 0);
+
     txtAniHeightSet();
     meImgMbSet();
 });
@@ -133,6 +133,9 @@ window.addEventListener('wheel', (event) => {
     floatGnb(event);
     popFloat();
 });
+window.addEventListener('scroll', () => {
+    //accScrollActive();
+})
 
 /* Lenis */
 function initLenis() {
@@ -297,37 +300,7 @@ function gsap() {
                     },
                 });
             });
-            eprImg.forEach((element, index) => { //경험 컨테이너 spread 애니메이션 (img)
-                const parent = document.querySelector('.main--expr');
-                const parentHeight = parent.offsetHeight / 4;
-
-                ScrollTrigger.create({
-                    trigger: parent,
-                    start: `${parentHeight * index}px center`, 
-                    end: `${parentHeight * (index + 1)}px center`,
-                    toggleClass: { 
-                        targets: element, 
-                        className: "spread--active" 
-                    }, 
-                    scrub: true,
-                });
-            });
-            eprCnt.forEach((element, index) => {//경험 컨테이너 spread 애니메이션 (내용)
-                const parent = document.querySelector('.main--expr');
-                const parentHeight = parent.offsetHeight / 4;
-                
-                ScrollTrigger.create({
-                    trigger: parent,
-                    start: `${parentHeight * index}px center`, 
-                    end: `${parentHeight * (index + 1)}px center`,
-                    toggleClass: { 
-                        targets: element, 
-                        className: "spread--active" 
-                    }, 
-                    scrub: true,
-                });
-            });
-            meImgs.forEach((element, index) => { // me 컨테이너 애니메이션
+            meImgs.forEach((element, index) => { // me 컨테이너 타이틀 애니메이션
                 ScrollTrigger.create({
                         trigger: element,
                         start: "top center",
@@ -391,7 +364,7 @@ function initPopSlick() {
         document.body.classList.add("active");
     
         // 팝업을 상단으로 스크롤
-        document.querySelector(".pop").scrollTo({ top: 0, behavior: "smooth" });
+        document.querySelector(".pop").scrollTo(0,0);
     });
 
 
@@ -428,6 +401,108 @@ function moveSlide() {
     });
 }
 
+function accScrollActive() {
+    window.addEventListener('scroll', function() {
+        let exprTop = document.querySelector('.main--expr').getBoundingClientRect().top;
+
+        const dvh100 = window.innerHeight;
+        const remToPx = parseFloat(getComputedStyle(document.documentElement).fontSize); // 1rem을 px로 변환
+        const rem5_125 = 5.125 * remToPx; // 5.125rem을 px로 변환
+
+        const calHeight = dvh100 - rem5_125; // 100dvh - 5.125rem
+
+        let content = slickContainer.querySelectorAll('ul li');
+        let img = slickContainer.querySelectorAll('ol li');
+        let contentArr = Array.from(content);
+        let imgArr = Array.from(img);
+
+        content.forEach(element => element.classList.remove('spread--active'));
+        img.forEach(element => element.classList.remove('spread--active'));
+        
+        if (exprTop >= 0 && exprTop < dvh100 * 0.5) {
+            imgArr[0].classList.add('spread--active');
+            contentArr[0].classList.add('spread--active');
+
+        } else if (exprTop >= -(calHeight) * 0.5) {
+            imgArr[0].classList.add('spread--active');
+            contentArr[0].classList.add('spread--active');
+
+        } else if (exprTop >= -(calHeight) * 1.5) {
+            imgArr[1].classList.add('spread--active');
+            contentArr[1].classList.add('spread--active');
+
+        } else if (exprTop >= -(calHeight) * 2.5) {
+            imgArr[2].classList.add('spread--active');
+            contentArr[2].classList.add('spread--active');
+
+        } else if (exprTop >= -(calHeight) * 3.5) {
+            imgArr[3].classList.add('spread--active');
+            contentArr[3].classList.add('spread--active');
+        }
+    });
+}
+
+function accClickActive() {
+    const workItems = document.querySelectorAll('.expr--cntns li'); 
+    const imgItems = document.querySelectorAll('.expr--img li'); 
+    workItems.forEach(item => {
+        item.addEventListener('click', function(event) {
+            const target = event.target;
+            const targetParent = target.parentNode;
+            const targetId = target.closest('[id]')?.getAttribute('id');
+            const targetNum = +targetId.slice(5);
+            const targetElement = document.getElementById(targetId);
+  
+            const siblings = Array.from(targetParent.parentNode.children);
+            const index = siblings.indexOf(targetParent);
+
+            if (!targetElement) {
+                return;
+            }
+
+            if (target.classList.contains('h1')) {
+                if (targetElement.classList.contains('spread--active')) {
+                    pop.classList.add('active');
+
+                    maintainScrol(); // 스크롤 위치 기억
+
+                    // 해당 슬라이드로 이동
+                    document.querySelectorAll('.float-nav--title p')[index]?.classList.add('active');
+                    document.querySelectorAll('.float--accrd div')[index]?.classList.add('active');
+                    $('.pop--slick').slick("slickGoTo", index);
+                    popFloatNav.style.visibility = 'visible';
+
+                } else {
+                    eprCnt.forEach(element => element.classList.remove('spread--active'));
+                    imgItems.forEach(element => element.classList.remove('spread--active'));
+
+                    console.log(targetNum);
+                    console.log(imgItems[targetNum - 1]);
+
+                    targetElement.classList.add('spread--active');
+                    imgItems[targetNum - 1].classList.add('spread--active');
+
+                    window.scrollBy({ top: targetElement, left: 0, behavior: 'smooth' });
+                }
+            } else if (target.classList.contains('h2') || target.classList.contains('h4')) {
+
+                pop.classList.add('active');
+
+                maintainScrol(); // 스크롤 위치 기억
+
+                // 해당 슬라이드로 이동
+                document.querySelectorAll('.float-nav--title p')[index]?.classList.add('active');
+                document.querySelectorAll('.float--accrd div')[index]?.classList.add('active');
+                $('.pop--slick').slick("slickGoTo", index);
+                popFloatNav.style.visibility = 'visible';
+
+            } else {
+                return;
+            }
+        });
+    });
+}
+
 /* 팝업 floatGnb */
 function popFloat() {
     const scrollTop = pop.scrollTop;
@@ -451,9 +526,9 @@ function floatGnb(event) {
     }
     
     const scrollY = window.scrollY; // 현재 스크롤 위치
-    const inerHeight = window.innerHeight; // 100vh 값
+    const dvh100 = window.innerHeight; // 100vh 값
 
-    if (scrollY > inerHeight) { // 100vh 보다 스크롤이 아래에 있을 떄
+    if (scrollY > dvh100) { // 100vh 보다 스크롤이 아래에 있을 떄
         if (event.deltaY > 0) { // 휠을 아래로 올릴 때
             gnb.classList.remove('fix-active');
         } else if (event.deltaY < 0) { // 휠을 위로 올릴 때
@@ -484,6 +559,9 @@ function loadingAin() {
                     element.classList.add('intro--active');
                 });
             }, 500);
+            setTimeout(() => {
+                window.scrollTo(0, 0); // 새로고침시 항상 상단
+            }, 520)
             
         });
 
