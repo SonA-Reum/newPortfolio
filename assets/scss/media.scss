@@ -79,21 +79,22 @@ $mobile-xs: 360px;
     }
 }
 @media screen and (max-width: $tablet) {
-
+    .fullwidth {
+        .scr {
+            &--pc {
+                display: none;
+            }
+            &--tablet {
+                display: block !important;
+            }
+            &--mo {
+                display: flex !important;
+            }
+        }
+    }
     .wrap {
         & > div {
             padding: 0 1.25rem 1.25rem 1.25rem !important;
-        }
-    }
-    .scr {
-        &--pc {
-            display: none;
-        }
-        &--tablet {
-            display: block !important;
-        }
-        &--mo {
-            display: flex !important;
         }
     }
     .main {
@@ -232,7 +233,7 @@ $mobile-xs: 360px;
             &.tok-re .pop--visual::after {
                 background-image: url('../images/img_bidtok-re_visual_tablet_pop.jpg');
             }
-            &.tok .pop--visual  {
+            &.tok .pop--visual::after  {
                 background: #f7f7f7 url('../images/img_bidtok_visual_tablet_pop.jpg');
                 background-size: contain;
                 background-repeat: no-repeat;
@@ -242,7 +243,7 @@ $mobile-xs: 360px;
                 width: 50%;
                 margin: 0 auto;
             }
-            &.admin .pop--visual {
+            &.admin .pop--visual::after {
                 background-image: url('../images/img_admin_visual_tablet_pop.jpg');
             } 
         }
@@ -250,12 +251,14 @@ $mobile-xs: 360px;
     
 }
 @media screen and (max-width: $mobile-lg) {
-    .scr {
-        &--tablet {
-            display: none !important;
-        }
-        &--tablet-mo {
-            display: block !important;        
+    .fullwidth {
+        .scr {
+            &--tablet {
+                display: none !important;
+            }
+            &--tablet-mo {
+                display: block !important;        
+            }
         }
     }
     nav {
@@ -383,6 +386,19 @@ $mobile-xs: 360px;
                 font-size: 1rem;
             }
         }
+        .slick--item.tok video + p {
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                top: -2.1rem;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: #fff;
+            }
+        }
     }
     .ani {
         &--spread {
@@ -465,7 +481,7 @@ $mobile-xs: 360px;
         .slick--item.tok video {
             width: auto;
             max-width: 100%;
-            height: calc(100dvh - 6.25rem);
+            //height: calc(100dvh - 6.25rem);
         }
     }
 }

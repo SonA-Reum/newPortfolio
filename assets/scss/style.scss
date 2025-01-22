@@ -420,6 +420,7 @@ nav:not(.pop--float-nav) {
         & > .pop--nav--close {
             align-self: flex-end;
             i {
+                font-size: 2rem;
                 color: $colr-black-80;
             }
         }
@@ -552,7 +553,7 @@ nav:not(.pop--float-nav) {
             padding-top: 47%;
             margin: 0 auto;
             border-radius: 1.25rem;
-            border: 1px solid #707070;
+            //border: 1px solid #707070;
             overflow: hidden;
             &::after {
                 content: '메인 비주얼';
@@ -564,6 +565,7 @@ nav:not(.pop--float-nav) {
                 height: 100%;
                 text-indent: -9999px;
                 @include bg-images;
+                background-size: cover;
                 color: transparent;
             }
         }
@@ -600,13 +602,13 @@ nav:not(.pop--float-nav) {
                 width: 60%;
                 height: auto;
                 border-radius: 1.25rem;
-                border: 1px solid #707070;
+                //border: 1px solid #707070;
                 overflow: hidden;
             }
             .pop__group:nth-child(2) {
                 img {
                     border-radius: 1.25rem;
-                    border: 1px solid #707070;
+                    //border: 1px solid #707070;
                 }
             }
         }
@@ -859,7 +861,8 @@ nav:not(.pop--float-nav) {
             top: 0;
             left: 0;
             z-index: 100;
-            border-bottom: 1px solid #707070;
+            box-shadow: 0 0 54px rgba(0, 0, 0, 0.2);
+            //border-bottom: 1px solid #707070;
             .float-nav--title {
                 margin: 0;
                 & > p {
