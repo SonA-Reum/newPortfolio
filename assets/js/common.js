@@ -121,13 +121,14 @@ window.addEventListener('load', () => {
         gnb.classList.remove('ham-active');
     }
 
-    txtAniHeightSet();
     meImgMbSet();
+    gsap();
 });
-document.addEventListener("resize", () => {
+window.addEventListener("resize", () => {
     ScrollTrigger.refresh();
     txtAniHeightSet();
     meImgMbSet();
+    gsap();
 })
 window.addEventListener('wheel', (event) => {
     floatGnb(event);

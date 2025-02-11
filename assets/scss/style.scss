@@ -13,6 +13,9 @@ body {
         overflow: hidden;
     }
 }
+*:focus {
+    border: 1px solid $colr-black;
+  }
 .loading {
     &--group {
         position: fixed;
