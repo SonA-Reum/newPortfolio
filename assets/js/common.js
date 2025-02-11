@@ -135,8 +135,7 @@ window.addEventListener('wheel', (event) => {
 });
 window.addEventListener('scroll', () => {
     //accScrollActive();
-    floatGnb(event);
-    popFloat();
+    
 })
 
 /* Lenis */
