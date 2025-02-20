@@ -12,8 +12,7 @@ let introTit,
     txtAni,
     meImg,
     meTit,
-    exprList,
-    exprLink;
+    exprList;
 /* 슬라이드 관련 변수 */ 
 let dot;
 let slideCount = 4; // 슬라이드 개수
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function ()  {
     meImg = document.querySelector('.main--me--img:nth-of-type(2)');
     meTit = document.querySelector('.main--me--tit:nth-child(2)');
     txtAni = document.querySelectorAll('.ani--fade-in');
-    exprLink =  document.querySelectorAll('.expr--cntns li > a');
+    
     /* 최상위 선택자 */ 
     body = document.querySelector('body');
 
@@ -376,33 +375,13 @@ function initPopSlick() {
         document.querySelector('.pop').classList.remove('active');
         returnScrol();
         popFloatNav.style.visibility = 'hidden';
+        document.querySelector('.wrap').removeAttribute('inert', ''); //비활성화 처리 제거
     });
     /* //팝업 닫기 */
 }
 
-/* 프로젝트 클릭시 해당 슬라이드로 이동 */ 
-function moveSlide() {
-    exprLink.forEach((link, index) => {
-        if (index > 8) {
-            return;
-        }
-        link.addEventListener("click", (event) => {
-            event.preventDefault(); // 링크 기본 동작 방지
-            const index = Array.from(event.target.parentNode.parentNode.children).indexOf(event.target.parentNode);
-            pop.classList.add('active');
 
-            maintainScrol(); //스크롤 위치 기억
-
-            // 해당 슬라이드로 이동
-
-            document.querySelectorAll('.float-nav--title p')[index].classList.add('active');
-            document.querySelectorAll('.float--accrd div')[index].classList.add('active');
-            $('.pop--slick').slick("slickGoTo", index);
-            popFloatNav.style.visibility = 'visible';
-        });
-    });
-}
-
+/* 경험 컨테이너 인터렉션 */ 
 function accScrollActive() {
     window.addEventListener('scroll', function() {
         let exprTop = document.querySelector('.main--expr').getBoundingClientRect().top;
@@ -444,25 +423,28 @@ function accScrollActive() {
     });
 }
 
+/* 경험 컨테이너 프로젝트 클릭시 해당 슬라이드로 이동 */ 
 function accClickActive() {
     const workItems = document.querySelectorAll('.expr--cntns li'); 
-    const imgItems = document.querySelectorAll('.expr--img li'); 
+    const workItemsArr = Array.from(workItems);
+    const imgItems = document.querySelectorAll('.expr--img li');
+
     workItems.forEach(item => {
         item.addEventListener('click', function(event) {
             const target = event.target;
-            const targetParent = target.parentNode;
+
+            const targetParent = target.closest('li');
+            const index = workItemsArr.indexOf(targetParent);
+
             const targetId = target.closest('[id]')?.getAttribute('id');
             const targetNum = +targetId.slice(5);
             const targetElement = document.getElementById(targetId);
-  
-            const siblings = Array.from(targetParent.parentNode.children);
-            const index = siblings.indexOf(targetParent);
 
             if (!targetElement) {
                 return;
             }
 
-            if (target.classList.contains('h1')) {
+            if (target.classList.contains('h2')) {
                 if (targetElement.classList.contains('spread--active')) {
                     pop.classList.add('active');
 
@@ -473,20 +455,18 @@ function accClickActive() {
                     document.querySelectorAll('.float--accrd div')[index]?.classList.add('active');
                     $('.pop--slick').slick("slickGoTo", index);
                     popFloatNav.style.visibility = 'visible';
+                    document.querySelector('.wrap').setAttribute('inert', ''); //비활성화 처리
 
                 } else {
                     eprCnt.forEach(element => element.classList.remove('spread--active'));
                     imgItems.forEach(element => element.classList.remove('spread--active'));
-
-                    console.log(targetNum);
-                    console.log(imgItems[targetNum - 1]);
 
                     targetElement.classList.add('spread--active');
                     imgItems[targetNum - 1].classList.add('spread--active');
 
                     window.scrollBy({ top: targetElement, left: 0, behavior: 'smooth' });
                 }
-            } else if (target.classList.contains('h2') || target.classList.contains('h4')) {
+            } else if (target.classList.contains('h3') || target.classList.contains('h4')) {
 
                 pop.classList.add('active');
 

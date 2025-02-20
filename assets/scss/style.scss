@@ -13,8 +13,8 @@ body {
         overflow: hidden;
     }
 }
-*:focus {
-    border: 1px solid $colr-main;
+*:focus-visible {   
+    border: 2px solid $colr-main;
   }
 .loading {
     &--group {
@@ -267,12 +267,17 @@ nav:not(.pop--float-nav) {
                 &:last-child {
                     border-bottom: 1px solid $colr-black;
                 }
-                .h1 {
+                .h2,
+                .h3,
+                .h4 {
+                    text-align: left;
+                }
+                .h2 {
                     font-family:  Pretendard-ExtraBold;
                     font-size: 1.375rem;
                     white-space: nowrap;
                 }
-                .h2, 
+                .h3, 
                 .h4 {
                     line-height: 150%;
                 }
@@ -808,11 +813,11 @@ nav:not(.pop--float-nav) {
         li {
             height: 3.4375rem;
             transition: height 0.8s ease;
-            .h1 {
-                height: 4.0625rem;
+            .h2 {
+                //height: 4.0625rem;
                 transition: font-size 0.8s ease;
             }
-            .h2,
+            .h3,
             .h4,
             .ar--btn {
                 display: none;
@@ -825,17 +830,17 @@ nav:not(.pop--float-nav) {
             flex-direction: column;
             justify-content: center;
             height: calc(100dvh - 3.4375rem * 3);
-            .h1 {
+            .h2 {
                 position: relative;
                 margin-bottom: 2rem;
                 font-size: var(--fsz-tit);
             }
-            .h2, 
+            .h3, 
             .h4 {
                 display: block;
                 opacity: 1;
             }
-            .h2 {
+            .h3 {
                 margin-bottom: 2.5rem;
                 font-size: var(--fsz-sub);
                 white-space: nowrap;
