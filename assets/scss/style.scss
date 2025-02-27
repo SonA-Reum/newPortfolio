@@ -155,7 +155,7 @@ nav:not(.pop--float-nav) {
         &--arrw {
             position: relative;
             z-index: 999;
-            li {
+            i {
                 font-family: "Apple Color Emoji", "Segoe UI Symbol", "Noto Sans Symbols", sans-serif;
                 &:nth-child(1),
                 &:nth-child(3) {
@@ -270,6 +270,7 @@ nav:not(.pop--float-nav) {
                 .h2,
                 .h3,
                 .h4 {
+                    color: $colr-black;
                     text-align: left;
                 }
                 .h2 {
