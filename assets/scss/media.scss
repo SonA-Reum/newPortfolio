@@ -316,7 +316,7 @@ $mobile-xs: 360px;
             }
         }
         &--expr {
-            height: calc((100dvh - 3.1875rem) * 4);
+            height: calc((100dvh - 3.1875rem) * 7);
             .expr--cntns {
                 li {
                     .h2 {
@@ -326,6 +326,7 @@ $mobile-xs: 360px;
                         margin-bottom: 1rem;
                     }
                     .h4 {
+                        display: none;
                         width: 100%;
                         font-size: .875rem;
                     }
