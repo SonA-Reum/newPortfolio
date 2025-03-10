@@ -432,6 +432,7 @@ function accScrollActive() {
     });
 }
 
+
 /* 경험 컨테이너 프로젝트 클릭시 해당 슬라이드로 이동 */ 
 function accClickActive() {
     const workItems = document.querySelectorAll('.expr--cntns li'); 
