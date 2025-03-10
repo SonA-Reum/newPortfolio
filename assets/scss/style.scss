@@ -236,7 +236,7 @@ nav:not(.pop--float-nav) {
     }
     &--expr{
         position: relative;
-        height: calc((100dvh - 5.125rem) * 4);
+        height: calc((100dvh - 5.125rem) * 7);
         &:has(.expr--sticky) {
             padding-left: 0;
             padding-right: 0
@@ -264,6 +264,26 @@ nav:not(.pop--float-nav) {
             li {
                 padding: 1rem 0;
                 border-top: 1px solid $colr-black;
+                &:nth-child(4) {
+                    & button:hover  {
+                        opacity: 1;
+                        pointer-events: none;
+                        cursor:default;
+                       
+                    }
+                }
+                &:nth-child(5),
+                &:nth-child(6),
+                &:nth-child(7) {
+                    & button {
+                        pointer-events: none;
+                        cursor:default;
+                    }
+                    & button:hover, 
+                    & .ar---btn:hover {
+                        opacity: 1;
+                    }
+                }
                 &:last-child {
                     border-bottom: 1px solid $colr-black;
                 }
@@ -341,9 +361,9 @@ nav:not(.pop--float-nav) {
                     white-space: nowrap;
                 }
                 h2 {
-                    margin-bottom: 2.5rem;
+                    margin-bottom: 2rem;
                     font-size: var(--fsz-sub);
-                    white-space: nowrap;
+                    //white-space: nowrap;
                 }
                 h4 {
                     font-size: 1.0625rem;
@@ -421,11 +441,13 @@ nav:not(.pop--float-nav) {
         visibility: visible;
         pointer-events: unset;
     }
+    
     &--float-nav {
         flex-wrap: wrap;
         width: 100dvw;
         padding: 0.8rem 2.5rem 2rem;
         background-color: #fff;
+        box-shadow: 0 0 54px rgba(0, 0, 0, 0.2);
         & > .pop--nav--close {
             align-self: flex-end;
             i {
@@ -815,7 +837,6 @@ nav:not(.pop--float-nav) {
             height: 3.4375rem;
             transition: height 0.8s ease;
             .h2 {
-                //height: 4.0625rem;
                 transition: font-size 0.8s ease;
             }
             .h3,
@@ -830,11 +851,13 @@ nav:not(.pop--float-nav) {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: calc(100dvh - 3.4375rem * 3);
+            height: calc(100dvh - 3.4375rem * 6);
             .h2 {
                 position: relative;
                 margin-bottom: 2rem;
                 font-size: var(--fsz-tit);
+                white-space: wrap;
+                word-break: keep-all;
             }
             .h3, 
             .h4 {
@@ -842,7 +865,7 @@ nav:not(.pop--float-nav) {
                 opacity: 1;
             }
             .h3 {
-                margin-bottom: 2.5rem;
+                margin-bottom: 2rem;
                 font-size: var(--fsz-sub);
                 white-space: nowrap;
             }
@@ -854,6 +877,7 @@ nav:not(.pop--float-nav) {
             .ar--btn {
                 display: inline-block;
                 max-width: 118px;
+                margin-bottom: 2.5rem;
                 opacity: 1;
             }
         }
@@ -870,7 +894,6 @@ nav:not(.pop--float-nav) {
             top: 0;
             left: 0;
             z-index: 100;
-            box-shadow: 0 0 54px rgba(0, 0, 0, 0.2);
             //border-bottom: 1px solid #707070;
             .float-nav--title {
                 margin: 0;

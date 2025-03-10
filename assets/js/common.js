@@ -419,9 +419,19 @@ function accScrollActive() {
         } else if (exprTop >= -(calHeight) * 3.5) {
             imgArr[3].classList.add('spread--active');
             contentArr[3].classList.add('spread--active');
+        } else if (exprTop >= -(calHeight) * 4.5) {
+            imgArr[4].classList.add('spread--active');
+            contentArr[4].classList.add('spread--active');
+        } else if (exprTop >= -(calHeight) * 5.5) {
+            imgArr[5].classList.add('spread--active');
+            contentArr[5].classList.add('spread--active');
+        } else if (exprTop >= -(calHeight) * 6.5) {
+            imgArr[6].classList.add('spread--active');
+            contentArr[6].classList.add('spread--active');
         }
     });
 }
+
 
 /* 경험 컨테이너 프로젝트 클릭시 해당 슬라이드로 이동 */ 
 function accClickActive() {
