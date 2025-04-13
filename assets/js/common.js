@@ -1,5 +1,7 @@
 let innerWidth = window.innerWidth;
 
+//테스트트
+
 /* 인트로 관련 변수 */ 
 let body = document.querySelector('body');
 let introTit = document.querySelectorAll('.ani--intro span');
