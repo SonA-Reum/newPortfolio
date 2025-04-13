@@ -108,7 +108,7 @@ $colr-main: #F9EB10;
             }
         }
         &-bg-non {
-            padding: 0;
+            //padding: 0;
             background: none !important;
             color: $colr-black;
             & > * {
