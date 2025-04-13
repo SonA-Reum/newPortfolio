@@ -266,6 +266,7 @@ function exprSlide() {
             {  
                 breakpoint: 1201, 
                 settings: {
+                    autoplaySpeed : 1500,
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     centerMode: true,
